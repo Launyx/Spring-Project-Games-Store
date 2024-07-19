@@ -2,7 +2,6 @@ package com.LojaDeJogos.luan.projeto.jogo;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 @Table(name = "Jogo")
 @Entity(name = "jogos")
@@ -14,7 +13,8 @@ import org.springframework.data.annotation.Id;
 @EqualsAndHashCode(of = "id")
 public class Jogo {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
 
@@ -24,4 +24,13 @@ public class Jogo {
     private String desenvolvedora;
     private String distribuidora;
     private String lancamento;
+
+    public Jogo(DadosCadastroJogo dados){
+        this.nome = dados.nome();
+        this.genero = dados.genero();
+        this.preco = dados.preco();
+        this.desenvolvedora = dados.desenvolvedora();
+        this.distribuidora = dados.distribuidora();
+        this.lancamento = dados.lancamento();
+    }
 }
